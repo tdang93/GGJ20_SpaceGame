@@ -25,6 +25,14 @@ public class controller : MonoBehaviour
     {
         verticalInput = Input.GetAxisRaw("Vertical");
         horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetKeyDown(KeyCode.F)) {
+            Debug.Log("F " + this.closestInteractable);
+            if (this.closestInteractable) {
+                this.closestInteractable.GetComponent<IInteractable>().interact();
+            }
+            
+        }
         
 
         Debug.Log("closest interactable:" + closestInteractable);

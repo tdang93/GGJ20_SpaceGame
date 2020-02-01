@@ -5,5 +5,5 @@
 
 public interface IInteractable
 {
-    void activate();
+    void interact();
 }
