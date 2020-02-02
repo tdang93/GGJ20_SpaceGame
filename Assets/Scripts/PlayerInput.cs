@@ -11,6 +11,8 @@ public class PlayerInput : MonoBehaviour
     public float Horizontal;
     public float Vertical;
     public bool A;
+    public bool A_held;
+
     public bool B;
     public bool X;
     public bool Y;
@@ -70,6 +72,8 @@ public class PlayerInput : MonoBehaviour
                 break;
         }
         //Debug.Log("Player" + playerNumber + " A: " + A);
+
+        A_held = (Input.GetAxis("A" + playerNumber)) == 1;
 
         B_down = (Input.GetAxis("B" + playerNumber)) == 1;
         //Debug.Log("B_down: " + B_down);

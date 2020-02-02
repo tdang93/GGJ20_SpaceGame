@@ -1460,8 +1460,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d6767ed8823fa4db4b1fb8a8ad6483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelType: 1
+  panelType: 2
   gunGO: {fileID: 0}
+  tractorBeamGO: {fileID: 0}
 --- !u!1 &6131631652867091194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,7 +1526,7 @@ MonoBehaviour:
   - {fileID: 586729590738708760}
   - {fileID: 6970352253567564582}
   isConnected: 0
-  rb: {fileID: 0}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!54 &126973642126431367
 Rigidbody:
   m_ObjectHideFlags: 0

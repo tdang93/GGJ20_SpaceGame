@@ -33,6 +33,7 @@ public class Wall : WallOrDoor, IInteractable
     }
 
     private void OnTriggerEnter(Collider collision) {
+        Debug.Log("trigger");
         if(collision.gameObject.tag == "asteroid") {        
             this.changeHealth(-1);
             if (this.health <= 0) {

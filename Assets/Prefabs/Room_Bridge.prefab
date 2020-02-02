@@ -931,7 +931,7 @@ MonoBehaviour:
   - {fileID: 697215582942927720}
   - {fileID: 4450221411473273176}
   isConnected: 0
-  rb: {fileID: 0}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!54 &126973642214220203
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -976,7 +976,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607449639068816855}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.15, z: -3.45}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 2, y: 0.25, z: 2}
   m_Children:
   - {fileID: 607449639255159235}
@@ -1060,6 +1060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelType: 0
   gunGO: {fileID: 0}
+  tractorBeamGO: {fileID: 0}
 --- !u!1 &607449639110007437
 GameObject:
   m_ObjectHideFlags: 0

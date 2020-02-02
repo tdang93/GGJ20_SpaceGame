@@ -40,12 +40,23 @@ public class Player : MonoBehaviour
         verticalInput = playerInput.Vertical + keyboard_verticalInput;
         horizontalInput = playerInput.Horizontal + keyboard_horizontalInput;
 
-        if (Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.G) || playerInput.A) {
+        if (Input.GetKeyDown(KeyCode.F) || playerInput.A) {
             if (this.closestInteractable) {
                 this.closestInteractable.GetComponent<IInteractable>().interact(this.gameObject);
             }
             
-        } else if (Input.GetKeyDown(KeyCode.R) || playerInput.B) {
+        }   
+        else if (Input.GetKey(KeyCode.G) || playerInput.A_held) {
+            if (this.closestInteractable) {
+                if(this.closestInteractable.GetComponent<Panel>()) {
+                    Panel p = this.closestInteractable.GetComponent<Panel>();
+                    if(p.panelType == Panel.PanelTypeEnum.Gun || p.panelType == Panel.PanelTypeEnum.TractorBeam) {
+                        p.interact(this.gameObject);
+                    }
+                }
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.R) || playerInput.B) {
             if (this.closestInteractable) {
                 this.closestInteractable.GetComponent<IInteractable>().repair(this.gameObject);
             }
