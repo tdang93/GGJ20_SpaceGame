@@ -7,6 +7,8 @@ TagManager:
   - Interactable
   - asteroid
   - enemy
+  - Bullet
+  - Resource
   layers:
   - Default
   - TransparentFX

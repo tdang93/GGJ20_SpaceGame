@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Panel : MonoBehaviour, IInteractable
 {
+    public enum PanelTypeEnum { Pilot, Gun, TractorBeam }
+    public PanelTypeEnum panelType;
+    public GameObject gunGO;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,9 @@ public class Panel : MonoBehaviour, IInteractable
 
     public void interact(GameObject go) {
         Debug.Log("Panel::interact() " + go);
+        if (this.panelType == PanelTypeEnum.Gun) {
+            this.gunGO.GetComponent<Gun>().shoot();
+        }
     }
 
     public void repair(GameObject go) {
