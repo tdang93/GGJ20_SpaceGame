@@ -14,6 +14,9 @@ public class Player : MonoBehaviour
     public GameObject interactableHighlight;
     
     public PlayerInput playerInput;
+
+    private int MAX_HEALTH = 7;
+    public int health = 7;
     
     // Start is called before the first frame update
     void Start()
@@ -47,10 +50,17 @@ public class Player : MonoBehaviour
             }
         }
         
-
+        if (health <= 0) { //eliminate player
+            Debug.Log("player eliminated");
+            this.gameObject.SetActive(false);
+            health = 0;
+        }
         //Debug.Log("closest interactable:" + closestInteractable);
     }
 
+    public void ChangeHealth(int amount) {
+        health += amount;
+    }
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     void FixedUpdate()
     {

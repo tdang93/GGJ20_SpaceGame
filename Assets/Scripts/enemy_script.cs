@@ -29,7 +29,7 @@ public class enemy_script : MonoBehaviour
             //Debug.Log("enemy sees player");
             Vector3 dist = (target.transform.position - this.transform.position);
             rb.velocity = dist * 0.7f;
-            
+            //transform.rotation = target.transform.rotation;
             //Vector3 objective = (gameObject.transform.forward * dist.magnitude);
             //Vector3 midway = (objective + target.transform.position)/3;
             //transform.LookAt(midway); 
@@ -48,8 +48,9 @@ public class enemy_script : MonoBehaviour
         if (other.gameObject.tag == "Player") {
             Debug.Log("enemy tracks player, at dist " + (transform.position - other.gameObject.transform.position).magnitude);
             //if ( (transform.position - collider.gameObject.transform.position).magnitude < 2.7f ) { }
-                Debug.Log("enemy attack player");
-                rb2.AddForce(25f * transform.forward, ForceMode.Impulse);
+            Debug.Log("enemy attack player: " + other.gameObject.GetComponent<Player>().health);
+            rb2.AddForce(30f * transform.forward, ForceMode.Impulse);
+            other.gameObject.GetComponent<Player>().ChangeHealth(-1);
         } 
     }
 }
