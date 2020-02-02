@@ -30,10 +30,10 @@ public class Player : MonoBehaviour
     {
         this.calculateClosestInteractable();
 
-        //verticalInput = Input.GetAxisRaw("Vertical");
-        //horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = playerInput.Vertical;
-        horizontalInput = playerInput.Horizontal;
+        float keyboard_verticalInput = Input.GetAxisRaw("Vertical");
+        float keyboard_horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = playerInput.Vertical + keyboard_verticalInput;
+        horizontalInput = playerInput.Horizontal + keyboard_horizontalInput;
 
         if (Input.GetKeyDown(KeyCode.F) || playerInput.A) {
             Debug.Log("F or A " + this.closestInteractable);
