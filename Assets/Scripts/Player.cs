@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class controller : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private Rigidbody playerRigidBody;
     public float speed = 5f;
@@ -56,7 +56,7 @@ public class controller : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Interactable") {
-            Debug.Log("Trigger Enter " + other.transform.name);
+            //Debug.Log("Trigger Enter " + other.transform.name);
             this.nearbyInteractables.Add(other.gameObject);
             this.calculateClosestInteractable();
         }
@@ -66,7 +66,7 @@ public class controller : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "Interactable") {
-            Debug.Log("Collision Exit " + other.transform.name);
+            //Debug.Log("Collision Exit " + other.transform.name);
             this.nearbyInteractables.Remove(other.gameObject);
             this.calculateClosestInteractable();
         }
@@ -90,6 +90,6 @@ public class controller : MonoBehaviour
             }
         }
 
-        this.interactableHighlight.GetComponent<HighlightController>().setTarget(closestInteractable);
+        this.interactableHighlight.GetComponent<Highlight>().setTarget(closestInteractable);
     }
 }
