@@ -9,20 +9,25 @@ public class Player : MonoBehaviour
     private float verticalInput = 0f;
     private float horizontalInput = 0f;
     private Vector3 movement;
-    private List<GameObject> nearbyInteractables;
+    private List<GameObject> nearbyInteractables = new List<GameObject>();
     private GameObject closestInteractable = null;
     public GameObject interactableHighlight;
     
     public PlayerInput playerInput;
+
+    /// Awake is called when the script instance is being loaded.
+    void Awake()
+    {
+        
+    }
     
     // Start is called before the first frame update
     void Start()
     {
-        nearbyInteractables = new List<GameObject>();
-        movement = Vector3.zero;
-        playerRigidBody = GetComponent<Rigidbody>();
-
-        playerInput = this.GetComponent<PlayerInput>();
+        
+        this.movement = Vector3.zero;
+        this.playerRigidBody = GetComponent<Rigidbody>();
+        this.playerInput = this.GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
@@ -30,13 +35,12 @@ public class Player : MonoBehaviour
     {
         this.calculateClosestInteractable();
 
-        //verticalInput = Input.GetAxisRaw("Vertical");
-        //horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = playerInput.Vertical;
-        horizontalInput = playerInput.Horizontal;
+        float keyboard_verticalInput = Input.GetAxisRaw("Vertical");
+        float keyboard_horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = playerInput.Vertical + keyboard_verticalInput;
+        horizontalInput = playerInput.Horizontal + keyboard_horizontalInput;
 
         if (Input.GetKeyDown(KeyCode.F) || playerInput.A) {
-            Debug.Log("F or A " + this.closestInteractable);
             if (this.closestInteractable) {
                 this.closestInteractable.GetComponent<IInteractable>().interact(this.gameObject);
             }
@@ -69,9 +73,8 @@ public class Player : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Interactable") {
-            Debug.Log("Trigger Enter " + other.transform.name);
-            this.nearbyInteractables.Add(other.gameObject);
-            //this.calculateClosestInteractable();
+            GameObject go = other.gameObject;
+            this.nearbyInteractables.Add(go);
         }
     }
 
@@ -79,14 +82,8 @@ public class Player : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "Interactable") {
-            //Debug.Log("Collision Exit " + other.transform.name);
             this.nearbyInteractables.Remove(other.gameObject);
-            //this.calculateClosestInteractable();
         }
-    }
-
-    private void freeMovement() {
-        // TODO: make player rotate freely when in space
     }
 
     private void calculateClosestInteractable() {
