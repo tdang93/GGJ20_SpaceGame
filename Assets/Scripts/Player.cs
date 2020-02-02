@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.calculateClosestInteractable();
+
         //verticalInput = Input.GetAxisRaw("Vertical");
         //horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = playerInput.Vertical;
@@ -67,7 +69,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Interactable") {
-            //Debug.Log("Trigger Enter " + other.transform.name);
+            Debug.Log("Trigger Enter " + other.transform.name);
             this.nearbyInteractables.Add(other.gameObject);
             //this.calculateClosestInteractable();
         }
