@@ -309,6 +309,7 @@ MonoBehaviour:
   players:
   - {fileID: 815721269}
   - {fileID: 856538306}
+  ratio: 1.5
 --- !u!81 &286063462
 AudioListener:
   m_ObjectHideFlags: 0

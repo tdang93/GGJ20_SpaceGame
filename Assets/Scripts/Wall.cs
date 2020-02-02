@@ -8,7 +8,7 @@ public class Wall : MonoBehaviour, IInteractable
     // Start is called before the first frame update
     void Start()
     {
-        this.tag = "Interactable";
+        this.gameObject.tag = "Interactable";
     }
 
     // Update is called once per frame
@@ -17,8 +17,13 @@ public class Wall : MonoBehaviour, IInteractable
         
     }
 
-    public void interact() {
-        Debug.Log("Wall::interact() " + this.gameObject.name);
+    public void interact(GameObject go) {
+        Debug.Log("Wall::interact() " + go);
+    }
+
+    public void repair(GameObject go) {
+        Debug.Log("Panel::repair() " + go);
+        
     }
 
     void OnTriggerEnter(Collider collider)

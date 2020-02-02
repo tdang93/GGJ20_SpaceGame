@@ -5,6 +5,7 @@ using UnityEngine;
 public class cam_track : MonoBehaviour
 {
     public List<Transform> players;
+    public float ratio = 1.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +47,7 @@ public class cam_track : MonoBehaviour
         /* if((players[1].transform.position - players[0].transform.position).magnitude > 3) {
             y_new = mag * 1.5f; //add f to make double to float
         } */
-        transform.position = new Vector3(x_sum, max_zoom * 2.5f, z_sum);
+        transform.position = new Vector3(x_sum, max_zoom * this.ratio, z_sum);
         //transform.position = player.transform.position;
         //transform.position += new Vector3(0,5,0);
         //transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 5, player.transform.position.z + 5);
