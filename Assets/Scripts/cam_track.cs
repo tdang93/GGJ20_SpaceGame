@@ -5,7 +5,7 @@ using UnityEngine;
 public class cam_track : MonoBehaviour
 {
     public List<Transform> players;
-    public float ratio = 1.5f;
+    public float ratio = 3.0f;
     // Start is called before the first frame update
     void Start()
     {

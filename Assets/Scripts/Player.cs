@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.calculateClosestInteractable();
+
         verticalInput = Input.GetAxisRaw("Vertical");
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -62,7 +64,7 @@ public class Player : MonoBehaviour
         if (other.transform.tag == "Interactable") {
             //Debug.Log("Trigger Enter " + other.transform.name);
             this.nearbyInteractables.Add(other.gameObject);
-            this.calculateClosestInteractable();
+            //this.calculateClosestInteractable();
         }
     }
 
@@ -72,7 +74,7 @@ public class Player : MonoBehaviour
         if (other.transform.tag == "Interactable") {
             //Debug.Log("Collision Exit " + other.transform.name);
             this.nearbyInteractables.Remove(other.gameObject);
-            this.calculateClosestInteractable();
+            //this.calculateClosestInteractable();
         }
     }
 
@@ -94,6 +96,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        this.interactableHighlight.GetComponent<Highlight>().setTarget(closestInteractable);
+        this.interactableHighlight.GetComponent<Highlight>().setTarget(this.closestInteractable);
     }
 }
