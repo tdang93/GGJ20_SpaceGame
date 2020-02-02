@@ -11,11 +11,14 @@ public class asteroid_spawner : MonoBehaviour
     public float timeElapsed;
     public float interval;
     public float lifeTime;
+    public float rad; // assume ship has radius of around 8
+    public float x_rad;
+    public float z_rad;
     private int count = 0;
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,12 +26,19 @@ public class asteroid_spawner : MonoBehaviour
     {
         timeElapsed += Time.deltaTime;
         if (timeElapsed >= interval) { //hardcoded times are not ideal; compile time takes forever
-            Vector3 random = new Vector3(Random.Range(10f,12f), 0, Random.Range(-5f,5f));
-            GameObject newAsteroid = Instantiate(asteroid, transform.position + random, transform.rotation); //copy an existing object in out scene
+            float angle = Random.Range(-Mathf.PI, Mathf.PI);
+            rad = 50f;
+            x_rad = rad * Mathf.Cos(angle);
+            z_rad = rad * Mathf.Sin(angle);
+            //Quaternion q = transform.Rotate(new Vector3(0, 1, 0), 180);
+            GameObject newAsteroid = Instantiate(asteroid, transform.position + new Vector3(x_rad, 0, z_rad), transform.rotation); //copy an existing object in out scene
+            GameObject newAsteroid2 = Instantiate(asteroid, transform.position + new Vector3(x_rad, 0, z_rad), transform.rotation);
+            newAsteroid.transform.LookAt(transform.position);
+            newAsteroid2.transform.LookAt(transform.position); //should reorient direction of second asteroid
             count++;
             newAsteroid.name = "Asteriod " + count;
             Destroy(newAsteroid, lifeTime); //self destruct pipe clones in five seconds
-            //Destroy(newAsteroid2, lifeTime);
+            Destroy(newAsteroid2, lifeTime);
             timeElapsed = 0;
         }
     }

@@ -12,12 +12,17 @@ public class Player : MonoBehaviour
     private List<GameObject> nearbyInteractables;
     private GameObject closestInteractable = null;
     public GameObject interactableHighlight;
+    
+    public PlayerInput playerInput;
+    
     // Start is called before the first frame update
     void Start()
     {
         nearbyInteractables = new List<GameObject>();
         movement = Vector3.zero;
         playerRigidBody = GetComponent<Rigidbody>();
+
+        playerInput = this.GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
@@ -25,16 +30,18 @@ public class Player : MonoBehaviour
     {
         this.calculateClosestInteractable();
 
-        verticalInput = Input.GetAxisRaw("Vertical");
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        //verticalInput = Input.GetAxisRaw("Vertical");
+        //horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = playerInput.Vertical;
+        horizontalInput = playerInput.Horizontal;
 
-        if (Input.GetKeyDown(KeyCode.F)) {
-            Debug.Log("F " + this.closestInteractable);
+        if (Input.GetKeyDown(KeyCode.F) || playerInput.A) {
+            Debug.Log("F or A " + this.closestInteractable);
             if (this.closestInteractable) {
                 this.closestInteractable.GetComponent<IInteractable>().interact(this.gameObject);
             }
             
-        } else if (Input.GetKeyDown(KeyCode.R)) {
+        } else if (Input.GetKeyDown(KeyCode.R) || playerInput.B) {
             if (this.closestInteractable) {
                 this.closestInteractable.GetComponent<IInteractable>().repair(this.gameObject);
             }
@@ -62,7 +69,7 @@ public class Player : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Interactable") {
-            //Debug.Log("Trigger Enter " + other.transform.name);
+            Debug.Log("Trigger Enter " + other.transform.name);
             this.nearbyInteractables.Add(other.gameObject);
             //this.calculateClosestInteractable();
         }
