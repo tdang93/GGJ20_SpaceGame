@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 270071230}
   - component: {fileID: 270071229}
   - component: {fileID: 270071228}
+  - component: {fileID: 270071231}
   m_Layer: 0
   m_Name: Gizmo 2
   m_TagString: Interactable
@@ -224,6 +225,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270071226}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &270071231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270071226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c94d68e061a87440acb5cedd04c167a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &458011411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 126973642853154882, guid: 5bba24d962908b143bab409437fd4547,
