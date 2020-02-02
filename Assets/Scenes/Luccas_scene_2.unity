@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3911735874726243630, guid: 3de0e57c43e25754695b59b241368d58,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 3911735874726243631, guid: 3de0e57c43e25754695b59b241368d58,
         type: 3}
       propertyPath: interactableHighlight
@@ -5791,6 +5796,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2585452395741128646, guid: 7e0c79ac17e88934cbfa6dca5578fa5a,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
     - target: {fileID: 6560357593548602642, guid: 7e0c79ac17e88934cbfa6dca5578fa5a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5844,6 +5854,21 @@ PrefabInstance:
     - target: {fileID: 6560357593548602642, guid: 7e0c79ac17e88934cbfa6dca5578fa5a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352176707774474471, guid: 7e0c79ac17e88934cbfa6dca5578fa5a,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352176707774474471, guid: 7e0c79ac17e88934cbfa6dca5578fa5a,
+        type: 3}
+      propertyPath: m_Radius
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8352176707774474471, guid: 7e0c79ac17e88934cbfa6dca5578fa5a,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
