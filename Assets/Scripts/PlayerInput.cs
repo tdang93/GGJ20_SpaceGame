@@ -14,6 +14,8 @@ public class PlayerInput : MonoBehaviour
     public bool B;
     public bool X;
     public bool Y;
+    public float LT;
+    public float RT;
 
     // Start is called before the first frame update
     void Start() {
@@ -118,5 +120,12 @@ public class PlayerInput : MonoBehaviour
                 break;
         }
         //Debug.Log("Player" + playerNumber + " Y: " + Y);
+
+        LT = Input.GetAxis("LT" + playerNumber);
+        if(LT > 0) { Debug.Log("LT" + playerNumber + ": " + LT); }
+
+        RT = Input.GetAxis("RT" + playerNumber);
+        if(RT > 0) { Debug.Log("RT" + playerNumber + ": " + RT); }
+
     }
 }

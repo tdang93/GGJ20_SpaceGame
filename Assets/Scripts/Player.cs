@@ -51,6 +51,20 @@ public class Player : MonoBehaviour
             }
         }
         
+        if (Input.GetKey(KeyCode.Q) || playerInput.LT > 0) {
+            if (this.closestInteractable) {
+                IInteractable II = this.closestInteractable.GetComponent<IInteractable>();
+                if(playerInput.LT > 0) { II.rotate(this.gameObject, (int) -playerInput.LT); }
+                else { II.rotate(this.gameObject, -1); }
+            }
+        } else if (Input.GetKey(KeyCode.E) || playerInput.RT > 0) {
+            if (this.closestInteractable) {
+                IInteractable II = this.closestInteractable.GetComponent<IInteractable>();
+                if(playerInput.RT > 0) { II.rotate(this.gameObject, (int) playerInput.RT); }
+                else { II.rotate(this.gameObject, 1); }
+            }
+        }
+        
 
         //Debug.Log("closest interactable:" + closestInteractable);
     }
