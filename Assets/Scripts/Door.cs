@@ -16,7 +16,7 @@ public class Door : MonoBehaviour, IInteractable
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float x = this.transform.position.x;
         float y = this.transform.position.y;
@@ -30,13 +30,12 @@ public class Door : MonoBehaviour, IInteractable
 
     public void interact(GameObject go) {
         Debug.Log("Door::interact() " + go);
-        this.isOpen = !this.isOpen;
 
         GameObject[] interactables = GameObject.FindGameObjectsWithTag("Interactable");
         float smallestDistance = float.MaxValue;
         GameObject closestDoorGO = null;
         foreach (GameObject interactableGO in interactables) {
-            if (interactableGO.name == "Door" && interactableGO != this.gameObject) {
+            if (interactableGO.GetComponent<Door>() && interactableGO != this.gameObject) {
                 float distance = (this.transform.position - interactableGO.transform.position).magnitude;
                 if (distance < smallestDistance) {
                     smallestDistance = distance;
@@ -48,8 +47,12 @@ public class Door : MonoBehaviour, IInteractable
         }
 
         if (closestDoorGO) {
-            Debug.Log("Found a closest door! " + closestDoorGO.name);
-            closestDoorGO.GetComponent<Door>().set(this.isOpen);
+            if ((closestDoorGO.transform.position - gameObject.transform.position).magnitude < 1f) {
+                Debug.Log("Found a closest door! " + closestDoorGO.name);
+                this.isOpen = !this.isOpen;
+                closestDoorGO.GetComponent<Door>().set(this.isOpen);
+                Debug.Log("closest door: " + closestDoorGO.name);
+            }
         }
     }
 
