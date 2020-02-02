@@ -32,13 +32,10 @@ public class asteroid_spawner : MonoBehaviour
             z_rad = rad * Mathf.Sin(angle);
             //Quaternion q = transform.Rotate(new Vector3(0, 1, 0), 180);
             GameObject newAsteroid = Instantiate(asteroid, transform.position + new Vector3(x_rad, 0, z_rad), transform.rotation); //copy an existing object in out scene
-            GameObject newAsteroid2 = Instantiate(asteroid, transform.position + new Vector3(x_rad, 0, z_rad), transform.rotation);
             newAsteroid.transform.LookAt(transform.position);
-            newAsteroid2.transform.LookAt(transform.position); //should reorient direction of second asteroid
             count++;
             newAsteroid.name = "Asteriod " + count;
             Destroy(newAsteroid, lifeTime); //self destruct pipe clones in five seconds
-            Destroy(newAsteroid2, lifeTime);
             timeElapsed = 0;
         }
     }

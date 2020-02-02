@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wall : MonoBehaviour, IInteractable
+public class Wall : WallOrDoor, IInteractable
 {
     private int MAX_HEALTH = 7;
     private int health = 7;
