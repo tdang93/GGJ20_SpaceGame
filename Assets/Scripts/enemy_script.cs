@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemy_script : MonoBehaviour
+public class enemy_script : MonoBehaviour, IInteractable
 {
     // Start is called before the first frame update
     public Rigidbody rb;
     private Rigidbody rb2;
 
-    private int MAX_HEALTH = 5;
-    private int health = 5;
+    private int MAX_HEALTH = 10;
+    private int health = 10;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -40,6 +40,17 @@ public class enemy_script : MonoBehaviour
             rb.velocity = new Vector3(0,0,0);
         }
         Debug.Log("target present " + target);
+
+        if (health <= 0) { //eliminate player
+            Debug.Log("enemy eliminated");
+            this.gameObject.SetActive(false);
+            health = 0;
+        }
+        //Deb
+    }
+
+    public void ChangeHealth(int amount) {
+        health += amount;
     }
 
     void OnCollisionEnter(Collision other) { //collider is set as trigger
@@ -53,4 +64,12 @@ public class enemy_script : MonoBehaviour
             other.gameObject.GetComponent<Player>().ChangeHealth(-1);
         } 
     }
+
+    public void interact(GameObject fighter) {
+        ChangeHealth(-1);
+        rb.AddForce(30f * fighter.transform.forward, ForceMode.Impulse);
+    }
+
+    public void repair(GameObject fighter) {}
+        //nothing happens
 }
