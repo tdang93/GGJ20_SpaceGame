@@ -28,22 +28,22 @@ public class Door : MonoBehaviour, IInteractable
         }
     }
 
-    public void interact() {
-        Debug.Log("Door::interact()");
+    public void interact(GameObject go) {
+        Debug.Log("Door::interact() " + go);
         this.isOpen = !this.isOpen;
 
         GameObject[] interactables = GameObject.FindGameObjectsWithTag("Interactable");
         float smallestDistance = float.MaxValue;
         GameObject closestDoorGO = null;
-        foreach (GameObject go in interactables) {
-            if (go.name == "Door" && go != this.gameObject) {
-                float distance = (this.transform.position - go.transform.position).magnitude;
+        foreach (GameObject interactableGO in interactables) {
+            if (interactableGO.name == "Door" && interactableGO != this.gameObject) {
+                float distance = (this.transform.position - interactableGO.transform.position).magnitude;
                 if (distance < smallestDistance) {
                     smallestDistance = distance;
-                    closestDoorGO = go;
+                    closestDoorGO = interactableGO;
                 }
                 
-                Debug.Log("Found a door! ---> " + go.name);
+                Debug.Log("Found a door! ---> " + interactableGO.name);
             }
         }
 
@@ -51,6 +51,10 @@ public class Door : MonoBehaviour, IInteractable
             Debug.Log("Found a closest door! " + closestDoorGO.name);
             closestDoorGO.GetComponent<Door>().set(this.isOpen);
         }
+    }
+
+    public void repair(GameObject go) {
+        Debug.Log("Panel::repair() " + go);
     }
 
     public void set(bool isOpen) {
