@@ -10,7 +10,7 @@ public class asteroid_flight : MonoBehaviour
     void Start()
     {          
         asteroidBody = GetComponent<Rigidbody>();
-        velocity = new Vector3(-5f, 0 , 0);   //units per frame, we have 60fps  
+        velocity = transform.forward * 10f;   //units per frame, we have 60fps  
     }
 
     // Update is called once per frame
