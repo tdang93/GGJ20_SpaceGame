@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public GameObject interactableHighlight;
     
     public PlayerInput playerInput;
+    private int resourceCount = 0;
 
     /// Awake is called when the script instance is being loaded.
     void Awake()
@@ -85,6 +86,11 @@ public class Player : MonoBehaviour
         if (other.transform.tag == "Interactable") {
             GameObject go = other.gameObject;
             this.nearbyInteractables.Add(go);
+        }
+        if (resourceCount < 3 &&  other.transform.tag == "Resource") {
+            Debug.Log("Collected resource!");
+            Destroy(other.gameObject);
+            resourceCount++;
         }
     }
 

@@ -22,11 +22,12 @@ public class TractorBeam : MonoBehaviour
 
         RaycastHit hitInfo;
         Vector3 forward = transform.TransformDirection(Vector3.forward);
-        if ( Physics.Raycast(this.transform.position, forward, out hitInfo, 10f) && hitInfo.collider.gameObject.tag == "asteroid") {
+        float rayDistance = 50f;
+        if ( Physics.Raycast(this.transform.position, forward, out hitInfo, rayDistance) && hitInfo.collider.gameObject.tag == "asteroid") {
             Debug.DrawRay(transform.position, forward * hitInfo.distance, Color.red);
             hitInfo.collider.gameObject.GetComponent<asteroid_collision>().pull(this.gameObject);
         } else {
-            Debug.DrawRay(transform.position, forward * 1000, Color.white);
+            Debug.DrawRay(transform.position, forward * rayDistance, Color.white);
         }
         
     }
