@@ -20,21 +20,22 @@ public class enemy_script : MonoBehaviour
             target = ray.collider.gameObject; //makes object target
         }
 
-        if(target) {
-            if (target.tag == "Player") {
-                Debug.Log("enemy sees player");
-                Vector3 dist = (target.transform.position - this.transform.position);
-                rb.velocity = dist * 2.5f;
-                
-                //Vector3 objective = (gameObject.transform.forward * dist.magnitude);
-                //Vector3 midway = (objective + target.transform.position)/3;
-                //transform.LookAt(midway); 
-                //rigid deals with the physics of object
-            } else { //so far interactables are walls; remove specific case
-                transform.Rotate(0, Random.Range(-30f, 30f), 0); //z component is forward
 
-            }
+        if (target && target.tag == "Player") {
+            Debug.Log("enemy sees player");
+            Vector3 dist = (target.transform.position - this.transform.position);
+            rb.velocity = dist * 0.7f;
+            
+            //Vector3 objective = (gameObject.transform.forward * dist.magnitude);
+            //Vector3 midway = (objective + target.transform.position)/3;
+            //transform.LookAt(midway); 
+            //rigid deals with the physics of object
+        } else { //so far interactables are walls; remove specific case
+            Vector3 rotate = Vector3.RotateTowards(transform.forward, -transform.right, Mathf.PI/10f, 0 ); //z component is forward
+            transform.rotation = Quaternion.LookRotation(rotate);
+            rb.velocity = new Vector3(0,0,0);
         }
+        Debug.Log("target present " + target);
     }
 
     void OnTriggerEnter(Collider collider) { //collider is set as trigger

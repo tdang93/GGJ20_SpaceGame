@@ -7,10 +7,12 @@ public class Wall : MonoBehaviour, IInteractable
     private int MAX_HEALTH = 7;
     private int health = 7;
     private Renderer wall_rend;
+    private Color defaultColor;
     // Start is called before the first frame update
     void Start()
     {
         wall_rend = GetComponent<Renderer>();
+        defaultColor = GetComponent<Renderer>().material.color;
     }
 
     // Update is called once per frame
@@ -54,12 +56,17 @@ public class Wall : MonoBehaviour, IInteractable
 
     private void changeHealth(int amount) {
         this.health += amount;
-        if (this.health > this.MAX_HEALTH) this.health = this.MAX_HEALTH;
-        if (this.health < 0) this.health = 0;
 
-        if (this.health >= 5) {
+        if (this.health > this.MAX_HEALTH) { 
+            this.health = this.MAX_HEALTH;
+        }
+        if (this.health < 0) this.health = 0;
+        
+        if(this.health == this.MAX_HEALTH) {
+            wall_rend.material.color = defaultColor;
+        } else if (this.health >= 5 && this.health < this.MAX_HEALTH) {
             wall_rend.material.color = Color.blue;
-        } else if (this.health >= 3 ) {
+        } else if (this.health >= 3 && this.health < 5) {
             wall_rend.material.color = Color.gray;
         } else {
             wall_rend.material.color = Color.red;
