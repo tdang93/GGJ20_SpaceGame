@@ -12,22 +12,29 @@ public class Player : MonoBehaviour
     private List<GameObject> nearbyInteractables;
     private GameObject closestInteractable = null;
     public GameObject interactableHighlight;
+    
+    public PlayerInput playerInput;
+    
     // Start is called before the first frame update
     void Start()
     {
         nearbyInteractables = new List<GameObject>();
         movement = Vector3.zero;
         playerRigidBody = GetComponent<Rigidbody>();
+
+        playerInput = this.GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        verticalInput = Input.GetAxisRaw("Vertical");
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        //verticalInput = Input.GetAxisRaw("Vertical");
+        //horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = playerInput.Vertical;
+        horizontalInput = playerInput.Horizontal;
 
-        if (Input.GetKeyDown(KeyCode.F)) {
-            Debug.Log("F " + this.closestInteractable);
+        if (Input.GetKeyDown(KeyCode.F) || playerInput.A) {
+            Debug.Log("F or A " + this.closestInteractable);
             if (this.closestInteractable) {
                 this.closestInteractable.GetComponent<IInteractable>().interact();
             }
