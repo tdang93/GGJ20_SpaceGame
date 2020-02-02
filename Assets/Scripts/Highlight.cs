@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighlightController : MonoBehaviour
+public class Highlight : MonoBehaviour
 {
     private GameObject target = null;
     private ParticleSystem ps;
@@ -17,7 +17,7 @@ public class HighlightController : MonoBehaviour
     void Update()
     {
         if (target) {
-            Debug.Log("highlight activated on " + this.target);
+            //Debug.Log("highlight activated on " + this.target);
             this.transform.position = target.transform.position;
             ps.Play();
         } else {

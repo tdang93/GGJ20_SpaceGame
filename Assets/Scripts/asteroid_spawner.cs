@@ -20,11 +20,11 @@ public class asteroid_spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeElapsed += Time.deltaTime;
-        if (timeElapsed >= interval) { //hardcoded times are not ideal; compile time takes forever
-            GameObject newAsteroid = Instantiate(asteroid, transform.position + new Vector3(0, 0, 0), transform.rotation); //copy an existing object in out scene
-            Destroy(newAsteroid, lifeTime); //self destruct pipe clones in five seconds
-            timeElapsed = 0;
-        }
+        // timeElapsed += Time.deltaTime;
+        // if (timeElapsed >= interval) { //hardcoded times are not ideal; compile time takes forever
+        //     GameObject newAsteroid = Instantiate(asteroid, transform.position + new Vector3(0, 0, 0), transform.rotation); //copy an existing object in out scene
+        //     Destroy(newAsteroid, lifeTime); //self destruct pipe clones in five seconds
+        //     timeElapsed = 0;
+        // }
     }
 }

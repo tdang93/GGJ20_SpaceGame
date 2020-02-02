@@ -18,6 +18,6 @@ public class asteroid_collision : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        Debug.Log("collision" + collision.gameObject.name);
+        //Debug.Log("collision" + collision.gameObject.name);
     }
 }
