@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
     void FixedUpdate()
     {
-        this.transform.position += -this.transform.forward;
+        this.transform.position += this.transform.forward;
     }
 
     /// OnTriggerEnter is called when the Collider other enters the trigger.

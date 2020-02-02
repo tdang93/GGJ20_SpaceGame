@@ -26,6 +26,10 @@ public class Panel : MonoBehaviour, IInteractable
         }
     }
 
+    public void rotate(GameObject go, int direction) {
+        this.gunGO.GetComponent<Gun>().rotate(direction);
+    }
+
     public void repair(GameObject go) {
         Debug.Log("Panel::repair() " + go);
     }
