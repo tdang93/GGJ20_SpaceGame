@@ -23,8 +23,8 @@ public class asteroid_spawner : MonoBehaviour
     {
         timeElapsed += Time.deltaTime;
         if (timeElapsed >= interval) { //hardcoded times are not ideal; compile time takes forever
-
-            GameObject newAsteroid = Instantiate(asteroid, transform.position + new Vector3(Random.Range(5f,8f), 0, Random.Range(-5f,5f)), transform.rotation); //copy an existing object in out scene
+            Vector3 random = new Vector3(Random.Range(10f,12f), 0, Random.Range(-5f,5f));
+            GameObject newAsteroid = Instantiate(asteroid, transform.position + random, transform.rotation); //copy an existing object in out scene
             count++;
             newAsteroid.name = "Asteriod " + count;
             Destroy(newAsteroid, lifeTime); //self destruct pipe clones in five seconds

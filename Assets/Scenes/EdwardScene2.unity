@@ -6549,7 +6549,7 @@ MonoBehaviour:
     type: 3}
   transform: {fileID: 2128683706}
   timeElapsed: 0
-  interval: 3
+  interval: 1
   lifeTime: 7
 --- !u!4 &2128683706
 Transform:
