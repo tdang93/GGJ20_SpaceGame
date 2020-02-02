@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IInteractable
+public class Door : WallOrDoor, IInteractable
 {
     private bool isOpen = false;
     private Vector3 openPosition;
