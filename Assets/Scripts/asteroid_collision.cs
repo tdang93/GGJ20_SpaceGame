@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class doorController : MonoBehaviour
+public class asteroid_collision : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject wall;
     void Start()
     {
         
@@ -14,5 +15,10 @@ public class doorController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+        Debug.Log("collision" + collision.gameObject.name);
+        Destroy(this);
     }
 }
