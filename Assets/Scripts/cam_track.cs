@@ -21,7 +21,7 @@ public class cam_track : MonoBehaviour
         float z_sum = 0;
         //float y_new = 5;
         //float mag = (players[1].transform.position - players[0].transform.position).magnitude;
-        float max_zoom = 0;
+        float max_zoom = 5;
         
         if(cnt == 1) {
             transform.position = players[0].transform.position +  new Vector3(0, 10, 0);
@@ -35,11 +35,12 @@ public class cam_track : MonoBehaviour
 
         x_sum /= cnt;
         z_sum /= cnt;
-        Vector3 centroid = new Vector3(x_sum, 0, z_sum);
+        Vector3 centroid = new Vector3(x_sum, max_zoom, z_sum);
 
         for (int i = 0; i < cnt; ++i) {
-            if ( ((centroid - players[i].transform.position).magnitude) > max_zoom ) {
-                max_zoom = (centroid - players[i].transform.position).magnitude;
+            float temp_mag = (centroid - players[i].transform.position).magnitude;
+            if ( temp_mag > max_zoom ) {
+                max_zoom = temp_mag;
             }
         }
         /* if((players[1].transform.position - players[0].transform.position).magnitude > 3) {
