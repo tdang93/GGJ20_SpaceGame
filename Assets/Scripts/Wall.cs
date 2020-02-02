@@ -21,9 +21,9 @@ public class Wall : MonoBehaviour, IInteractable
         Debug.Log("Wall::interact() " + this.gameObject.name);
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider collider)
     {
-        if (other.gameObject.tag == "Asteroid") {
+        if (collider.gameObject.tag == "Asteroid") {
             this.health -= 1;
             if (this.health <= 0) {
                 Destroy(this);
