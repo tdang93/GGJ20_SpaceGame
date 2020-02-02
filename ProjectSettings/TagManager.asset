@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - asteroid
+  - enemy
   layers:
   - Default
   - TransparentFX
