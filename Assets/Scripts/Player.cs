@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
                 this.closestInteractable.GetComponent<IInteractable>().interact(this.gameObject);
             }
             
-        } else if (Input.GetKeyDown(KeyCode.R)) {
+        } else if (Input.GetKeyDown(KeyCode.R) || playerInput.B) {
             if (this.closestInteractable) {
                 this.closestInteractable.GetComponent<IInteractable>().repair(this.gameObject);
             }
