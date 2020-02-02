@@ -35,7 +35,7 @@ public class controller : MonoBehaviour
         }
         
 
-        Debug.Log("closest interactable:" + closestInteractable);
+        //Debug.Log("closest interactable:" + closestInteractable);
     }
 
     /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.

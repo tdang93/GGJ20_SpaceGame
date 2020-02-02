@@ -5,7 +5,7 @@ using UnityEngine;
 public class asteroid_collision : MonoBehaviour
 {
     // Start is called before the first frame update
-    private GameObject wall;
+    public GameObject wall;
     void Start()
     {
         
@@ -19,5 +19,6 @@ public class asteroid_collision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         Debug.Log("collision" + collision.gameObject.name);
+        Destroy(this);
     }
 }
