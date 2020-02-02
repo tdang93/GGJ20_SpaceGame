@@ -51,13 +51,17 @@ public class Player : MonoBehaviour
             }
         }
         
-        if (Input.GetKey(KeyCode.Q)) {
+        if (Input.GetKey(KeyCode.Q) || playerInput.LT > 0) {
             if (this.closestInteractable) {
-                this.closestInteractable.GetComponent<IInteractable>().rotate(this.gameObject, -1);
+                IInteractable II = this.closestInteractable.GetComponent<IInteractable>();
+                if(playerInput.LT > 0) { II.rotate(this.gameObject, (int) -playerInput.LT); }
+                else { II.rotate(this.gameObject, -1); }
             }
-        } else if (Input.GetKey(KeyCode.E)) {
+        } else if (Input.GetKey(KeyCode.E) || playerInput.RT > 0) {
             if (this.closestInteractable) {
-                this.closestInteractable.GetComponent<IInteractable>().rotate(this.gameObject, 1);
+                IInteractable II = this.closestInteractable.GetComponent<IInteractable>();
+                if(playerInput.RT > 0) { II.rotate(this.gameObject, (int) playerInput.RT); }
+                else { II.rotate(this.gameObject, 1); }
             }
         }
         

@@ -29,6 +29,7 @@ public class Gun : MonoBehaviour
     }
 
     public void rotate(int dir) {
+        Debug.Log("Gun::rotate() dir: " + dir);
         Vector3 direction = (dir > 0 ? this.transform.right : -1f * this.transform.right);
         Vector3 rotate = Vector3.RotateTowards(this.transform.forward, direction, Mathf.PI/45f, 0f);
         this.transform.rotation = Quaternion.LookRotation(rotate);
