@@ -6,6 +6,10 @@ public class enemy_script : MonoBehaviour
 {
     // Start is called before the first frame update
     public Rigidbody rb;
+    private Rigidbody rb2;
+
+    private int MAX_HEALTH = 5;
+    private int health = 5;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,7 +26,7 @@ public class enemy_script : MonoBehaviour
 
 
         if (target && target.tag == "Player") {
-            Debug.Log("enemy sees player");
+            //Debug.Log("enemy sees player");
             Vector3 dist = (target.transform.position - this.transform.position);
             rb.velocity = dist * 0.7f;
             
@@ -31,14 +35,21 @@ public class enemy_script : MonoBehaviour
             //transform.LookAt(midway); 
             //rigid deals with the physics of object
         } else { //so far interactables are walls; remove specific case
-            Vector3 rotate = Vector3.RotateTowards(transform.forward, -transform.right, Mathf.PI/10f, 0 ); //z component is forward
+            Vector3 rotate = Vector3.RotateTowards(transform.forward, -transform.right, Mathf.PI/90f, 0 ); //z component is forward
             transform.rotation = Quaternion.LookRotation(rotate);
             rb.velocity = new Vector3(0,0,0);
         }
         Debug.Log("target present " + target);
     }
 
-    void OnTriggerEnter(Collider collider) { //collider is set as trigger
-        
+    void OnCollisionEnter(Collision other) { //collider is set as trigger
+        rb2 = other.gameObject.GetComponent<Rigidbody>(); //rigidbody of player
+
+        if (other.gameObject.tag == "Player") {
+            Debug.Log("enemy tracks player, at dist " + (transform.position - other.gameObject.transform.position).magnitude);
+            //if ( (transform.position - collider.gameObject.transform.position).magnitude < 2.7f ) { }
+                Debug.Log("enemy attack player");
+                rb2.AddForce(25f * transform.forward, ForceMode.Impulse);
+        } 
     }
 }
