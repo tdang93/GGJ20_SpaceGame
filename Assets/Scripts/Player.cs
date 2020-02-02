@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         verticalInput = playerInput.Vertical + keyboard_verticalInput;
         horizontalInput = playerInput.Horizontal + keyboard_horizontalInput;
 
-        if (Input.GetKeyDown(KeyCode.F) || playerInput.A) {
+        if (Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.G) || playerInput.A) {
             if (this.closestInteractable) {
                 this.closestInteractable.GetComponent<IInteractable>().interact(this.gameObject);
             }

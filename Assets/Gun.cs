@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    private const float COOLDOWN = 0.15f;
+    private float timer = 0f;
     public GameObject bulletPrefab;
     // Start is called before the first frame update
     void Start()
@@ -18,14 +20,17 @@ public class Gun : MonoBehaviour
     }
 
     public void shoot() {
-        Debug.Log("Gun::shoot()");
-
-        Vector3 position = this.transform.position + this.transform.forward * 2f;
-        GameObject bullet = Instantiate(this.bulletPrefab, position, this.transform.rotation);
-        bullet.tag = "Bullet";
-        Vector3 toGun = (bullet.transform.position - this.transform.position);
-        //bullet.transform.LookAt(toGun);
-        Destroy(bullet, 25f);
+        this.timer += Time.deltaTime;
+        if (this.timer >= Gun.COOLDOWN) {
+            this.timer = 0f;
+            Debug.Log("Gun::shoot()");
+            Vector3 position = this.transform.position + this.transform.forward * 2f;
+            GameObject bullet = Instantiate(this.bulletPrefab, position, this.transform.rotation);
+            bullet.tag = "Bullet";
+            Vector3 toGun = (bullet.transform.position - this.transform.position);
+            Destroy(bullet, 5f);
+        }
+        
     }
 
     public void rotate(int dir) {
