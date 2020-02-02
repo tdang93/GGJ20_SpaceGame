@@ -51,6 +51,16 @@ public class Player : MonoBehaviour
             }
         }
         
+        if (Input.GetKey(KeyCode.Q)) {
+            if (this.closestInteractable) {
+                this.closestInteractable.GetComponent<IInteractable>().rotate(this.gameObject, -1);
+            }
+        } else if (Input.GetKey(KeyCode.E)) {
+            if (this.closestInteractable) {
+                this.closestInteractable.GetComponent<IInteractable>().rotate(this.gameObject, 1);
+            }
+        }
+        
 
         //Debug.Log("closest interactable:" + closestInteractable);
     }

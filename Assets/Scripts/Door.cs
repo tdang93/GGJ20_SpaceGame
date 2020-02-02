@@ -57,6 +57,10 @@ public class Door : MonoBehaviour, IInteractable
         Debug.Log("Panel::repair() " + go);
     }
 
+    public void rotate(GameObject go, int direction) {
+        // Do nothing
+    }
+
     public void set(bool isOpen) {
         this.isOpen = isOpen;
     }

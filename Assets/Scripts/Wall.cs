@@ -28,6 +28,10 @@ public class Wall : MonoBehaviour, IInteractable
         this.changeHealth(1);
     }
 
+    public void rotate(GameObject go, int direction) {
+        // Do nothing
+    }
+
     private void OnTriggerEnter(Collider collision) {
         if(collision.gameObject.tag == "asteroid") {        
             this.changeHealth(-1);
