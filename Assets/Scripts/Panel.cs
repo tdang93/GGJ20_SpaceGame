@@ -16,8 +16,11 @@ public class Panel : MonoBehaviour, IInteractable
         
     }
 
-    public void interact() {
-        Debug.Log("PanelController::interact()");
-        
+    public void interact(GameObject go) {
+        Debug.Log("Panel::interact() " + go);
+    }
+
+    public void repair(GameObject go) {
+        Debug.Log("Panel::repair() " + go);
     }
 }

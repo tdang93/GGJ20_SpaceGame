@@ -29,9 +29,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F)) {
             Debug.Log("F " + this.closestInteractable);
             if (this.closestInteractable) {
-                this.closestInteractable.GetComponent<IInteractable>().interact();
+                this.closestInteractable.GetComponent<IInteractable>().interact(this.gameObject);
             }
             
+        } else if (Input.GetKeyDown(KeyCode.R)) {
+            if (this.closestInteractable) {
+                this.closestInteractable.GetComponent<IInteractable>().repair(this.gameObject);
+            }
         }
         
 
@@ -77,16 +81,16 @@ public class Player : MonoBehaviour
     }
 
     private void calculateClosestInteractable() {
-        if (this.nearbyInteractables.Count == 0) {
-            this.closestInteractable = null;
-        }
+        this.closestInteractable = null;
 
         float smallestDistance = float.MaxValue;
         foreach (GameObject go in this.nearbyInteractables) {
-            float distance = (go.transform.position - this.transform.position).magnitude;
-            if (distance < smallestDistance) {
+            Vector3 toInteractable = (this.transform.position - go.transform.position);
+            float distance = toInteractable.magnitude;
+            float dotProduct = Vector3.Dot(toInteractable, -this.transform.forward);
+            if (distance < smallestDistance && dotProduct > 0) {
                 smallestDistance = distance;
-                closestInteractable = go;
+                this.closestInteractable = go;
             }
         }
 
